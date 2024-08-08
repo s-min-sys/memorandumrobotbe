@@ -97,7 +97,7 @@ func (s *Server) init() {
 				continue
 			}
 
-			err := s.taskPool.AddTask(memo.ID, mr.LastTouchAt.Add(memo.Span), s.taskCb, memo.ID)
+			err := s.taskPool.AddTask(memo.ID, mr.LastTouchAt.Add(memo.Span), s.taskCb)
 			if err != nil {
 				s.logger.WithFields(l.ErrorField(err)).Fatal("add task failed!!")
 			}

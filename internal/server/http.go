@@ -116,17 +116,23 @@ func (s *Server) handleAddInner(c *gin.Context) (id string, code ptl.Code, msg s
 
 		newMd.tryInit()
 
+		span := time.Duration(req.InternalSeconds) * time.Second
+
 		newMd.Memos[id] = &Memo{
 			ID:   id,
 			Name: req.Name,
 			Info: req.Info,
-			Span: time.Duration(req.InternalSeconds) * time.Second,
+			Span: span,
 		}
+
+		timeNow := time.Now()
 
 		newMd.MemoRecords[id] = &MemoRecord{
 			ID:          id,
-			LastTouchAt: time.Now(),
+			LastTouchAt: timeNow,
 		}
+
+		_ = s.taskPool.AddTask(id, timeNow.Add(span), s.taskCb)
 
 		return
 	})
