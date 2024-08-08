@@ -7,11 +7,10 @@ require (
 	github.com/gin-contrib/requestid v1.0.2
 	github.com/gin-gonic/gin v1.10.0
 	github.com/google/uuid v1.6.0
-	github.com/patdz/schedule_task v0.0.2
 	github.com/s-min-sys/notifier-share v0.0.4
 	github.com/sgostarter/i v0.1.16
 	github.com/sgostarter/libconfig v0.0.2
-	github.com/sgostarter/libeasygo v0.1.75
+	github.com/sgostarter/libeasygo v0.1.76
 )
 
 require (
@@ -34,12 +33,12 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.2 // indirect
-	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/sgostarter/lib3thwrapper v0.0.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
 	golang.org/x/arch v0.8.0 // indirect
 	golang.org/x/crypto v0.23.0 // indirect
+	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect

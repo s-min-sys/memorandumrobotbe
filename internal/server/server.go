@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	scheduletask "github.com/patdz/schedule_task"
 	"github.com/s-min-sys/memorandumrobotbe/internal/config"
 	"github.com/sgostarter/i/l"
+	"github.com/sgostarter/libeasygo/alg"
 	"github.com/sgostarter/libeasygo/stg/mwf"
 )
 
@@ -36,7 +36,7 @@ type Server struct {
 	logger    l.Wrapper
 
 	memos    *mwf.MemWithFile[*MemoData, mwf.Serial, mwf.Lock]
-	taskPool scheduletask.ScheduleTaskPool
+	taskPool *alg.HeapTaskPool
 }
 
 func NewServer(cfg *config.Config, logger l.Wrapper) *Server {
@@ -61,7 +61,7 @@ func NewServer(cfg *config.Config, logger l.Wrapper) *Server {
 			&MemoData{}, &mwf.JSONSerial{
 				MarshalIndent: cfg.Debug,
 			}, &sync.RWMutex{}, filepath.Join(cfg.Root, "memos.json"), nil),
-		taskPool: scheduletask.NewTimeWheelTaskPool(),
+		taskPool: alg.NewHeapTaskPool(),
 	}
 
 	s.init()
@@ -136,12 +136,8 @@ func (s *Server) goodMorningRoutine() {
 //
 //
 
-func (s *Server) taskCb(args ...interface{}) {
-	if len(args) < 1 {
-		s.logger.Fatal("invalid taskCB params")
-	}
-
-	s.notifyMemoWithID(args[0].(string)) // nolint:forcetypeassert
+func (s *Server) taskCb(key string, _ ...any) {
+	s.notifyMemoWithID(key)
 }
 
 //
