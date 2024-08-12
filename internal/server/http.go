@@ -118,6 +118,14 @@ func (s *Server) handleAddInner(c *gin.Context) (id string, code ptl.Code, msg s
 
 		span := time.Duration(req.InternalSeconds) * time.Second
 
+		for _, memo := range newMd.Memos {
+			if memo.Name == req.Name {
+				err = commerr.ErrAlreadyExists
+
+				return
+			}
+		}
+
 		newMd.Memos[id] = &Memo{
 			ID:   id,
 			Name: req.Name,
