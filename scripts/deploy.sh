@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-bash deploy_x_d.sh nm memorandumrobot nm/memorandumrobot
+bash deploy_x_wkman.sh memorandumrobot wkman/memorandumrobot memorandumrobot
