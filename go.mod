@@ -7,10 +7,10 @@ require (
 	github.com/gin-contrib/requestid v1.0.2
 	github.com/gin-gonic/gin v1.10.0
 	github.com/google/uuid v1.6.0
-	github.com/s-min-sys/notifier-share v0.0.4
+	github.com/s-min-sys/notifier-share v0.0.5
 	github.com/sgostarter/i v0.1.16
 	github.com/sgostarter/libconfig v0.0.2
-	github.com/sgostarter/libeasygo v0.1.76
+	github.com/sgostarter/libeasygo v0.1.86
 )
 
 require (
