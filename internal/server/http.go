@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"slices"
 	"strings"
 	"time"
 
@@ -403,6 +404,10 @@ func (s *Server) handleAllInner(_ *gin.Context) (memoAll []*MemoAllItem, code pt
 				})
 			}
 		}
+	})
+
+	slices.SortFunc(memoAll, func(a, b *MemoAllItem) int {
+		return strings.Compare(a.ID, b.ID)
 	})
 
 	code = ptl.CodeSuccess
